@@ -7,3 +7,5 @@ First of all, make sure you have [`Node.js`](https://nodejs.org/) and [`npm`](ht
 Then, run the development server with `npm run dev`.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+For a better experience, open the server's link (<IP address>:3000) from your smartphone's browser.
