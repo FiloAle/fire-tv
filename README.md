@@ -4,6 +4,6 @@ This is a [Next.js](https://nextjs.org) project that mocks the existing Fire TV 
 
 First of all, make sure you have [`Node.js`](https://nodejs.org/) and [`npm`](https://www.npmjs.com) installed on your computer.
 
-Then, run the development server with [`npm run dev`].
+Then, run the development server with `npm run dev`.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
