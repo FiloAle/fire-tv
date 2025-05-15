@@ -56,7 +56,9 @@ export default function ChatListEntry({
 							{lastMessage.sender}:
 						</p>
 
-						<p className="text-neutral-500">{lastMessage.text}</p>
+						<p className="line-clamp-1 text-neutral-500">
+							{lastMessage.text}
+						</p>
 					</div>
 				</div>
 			</div>

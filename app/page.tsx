@@ -3,8 +3,12 @@
 import RoundButton from '@/app/components/round-button';
 import EventCard from '@/app/components/event-card';
 import { pressKey } from '@/app/utils/pressKey';
+import { useFavorites } from '@/app/context/favorites';
+import Link from 'next/link';
 
 export default function Home() {
+	const { events, toggleFavorite } = useFavorites();
+
 	return (
 		<div className="h-full font-sans">
 			<main className="flex flex-col items-center gap-10">
@@ -80,19 +84,28 @@ export default function Home() {
 					</div>
 
 					<div className="flex w-full flex-row items-center justify-between rounded-full bg-neutral-100 dark:bg-neutral-900">
-						<button className="flex h-14 w-14 items-center justify-center">
+						<button
+							onClick={() => pressKey('-')}
+							className="flex h-14 w-14 items-center justify-center"
+						>
 							<span className="material-symbols-rounded !text-4xl">
 								volume_down
 							</span>
 						</button>
 
-						<button className="flex h-14 w-14 items-center justify-center">
+						<button
+							onClick={() => pressKey('.')}
+							className="flex h-14 w-14 items-center justify-center"
+						>
 							<span className="material-symbols-rounded !text-4xl">
 								volume_off
 							</span>
 						</button>
 
-						<button className="flex h-14 w-14 items-center justify-center">
+						<button
+							onClick={() => pressKey('+')}
+							className="flex h-14 w-14 items-center justify-center"
+						>
 							<span className="material-symbols-rounded !text-4xl">
 								volume_up
 							</span>
@@ -104,30 +117,35 @@ export default function Home() {
 					<div className="flex flex-row items-center justify-between px-8">
 						<h1 className="text-xl font-bold">Upcoming events</h1>
 
-						<div className="flex flex-row items-center justify-center text-sm opacity-20">
+						<Link
+							href="/schedule"
+							className="flex flex-row items-center justify-center text-sm opacity-20"
+						>
 							<h3>See schedule</h3>
 
 							<span className="material-symbols-rounded !text-[1rem]">
 								keyboard_arrow_right
 							</span>
-						</div>
+						</Link>
 					</div>
 
 					<div className="no-scrollbar overflow-x-scroll pb-8">
 						<div className="inline-flex gap-x-4 px-8">
-							<EventCard
-								eventImg="/imgs/juve.avif"
-								eventName="Juventus - Monza"
-								eventTime="Today, 20:45"
-								isFavorite={true}
-							/>
-
-							<EventCard
-								eventImg="/imgs/f1.avif"
-								eventName="Formula 1"
-								eventTime="Today, 21:00"
-								isFavorite={true}
-							/>
+							{events
+								.sort(
+									(a, b) =>
+										new Date(a.eventTime).getTime() -
+										new Date(b.eventTime).getTime()
+								)
+								.slice(0, 5)
+								.map((event, index) => (
+									<EventCard
+										key={index}
+										eventImg={event.eventImg}
+										eventName={event.eventName}
+										eventTime={event.eventTime}
+									/>
+								))}
 						</div>
 					</div>
 				</div>

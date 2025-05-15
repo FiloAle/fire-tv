@@ -3,8 +3,19 @@
 import EventCard from '@/app/components/event-card';
 import Link from 'next/link';
 import CircularBadge from '@/app/components/circular-badge';
+import { useFavorites } from '@/app/context/favorites';
 
 export default function Account() {
+	const { events, toggleFavorite } = useFavorites();
+
+	const favoriteEvents = events
+		.filter((event) => event.isFavorite)
+		.sort(
+			(a, b) =>
+				new Date(a.eventTime).getTime() -
+				new Date(b.eventTime).getTime()
+		);
+
 	return (
 		<div className="h-full font-sans">
 			<main className="flex flex-col items-center gap-10">
@@ -131,26 +142,25 @@ export default function Account() {
 
 					<div className="flex w-full flex-col gap-y-4">
 						<div className="flex flex-row items-center justify-between px-8">
-							<h1 className="text-xl font-bold">
-								Scheduled Events
-							</h1>
+							<h1 className="text-xl font-bold">Saved events</h1>
 						</div>
 
-						<div className="no-scrollbar overflow-x-scroll pb-8">
+						<div className="no-scrollbar overflow-x-scroll pb-2">
 							<div className="inline-flex gap-x-4 px-8">
-								<EventCard
-									eventImg="/imgs/juve.avif"
-									eventName="Juventus - Monza"
-									eventTime="Today, 20:45"
-									isFavorite={true}
-								/>
-
-								<EventCard
-									eventImg="/imgs/f1.avif"
-									eventName="Formula 1"
-									eventTime="Today, 21:00"
-									isFavorite={true}
-								/>
+								{favoriteEvents.length === 0 ? (
+									<p className="text-neutral-500 dark:text-neutral-400">
+										You haven't saved any event yet.
+									</p>
+								) : (
+									favoriteEvents.map((event, index) => (
+										<EventCard
+											key={index}
+											eventImg={event.eventImg}
+											eventName={event.eventName}
+											eventTime={event.eventTime}
+										/>
+									))
+								)}
 							</div>
 						</div>
 					</div>

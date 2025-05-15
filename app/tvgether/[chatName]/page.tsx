@@ -23,6 +23,12 @@ export default function ChatPage() {
 		return <p>Chat not found.</p>;
 	}
 
+	function isMsgOnlyEmoji(text: string) {
+		const emojiRegex =
+			/^(?:\p{Extended_Pictographic}(?:\uFE0F|\u200D)?\s?){1,3}$/u;
+		return emojiRegex.test(text.trim());
+	}
+
 	return (
 		<div className="flex h-screen w-screen flex-col justify-between p-8">
 			<div className="flex flex-row items-center justify-start gap-4">
@@ -58,23 +64,42 @@ export default function ChatPage() {
 
 			<div className="flex flex-col">
 				<div className="flex flex-col justify-end gap-y-2">
-					{messages.map((msg, index) => (
-						<div
-							key={index}
-							className={`${msg.sender === 'You' ? 'justify-end' : 'justify-start'} font-sm flex w-full`}
-						>
+					{messages.map((msg, index) => {
+						const isEmojiOnly = isMsgOnlyEmoji(msg.text);
+
+						const isSenderYou = msg.sender === 'You';
+						const bubbleClasses = isEmojiOnly
+							? ''
+							: isSenderYou
+								? 'rounded-bl-3xl bg-sky-500 text-white'
+								: 'rounded-br-3xl bg-neutral-200 dark:bg-neutral-800';
+
+						return (
 							<div
-								className={`${msg.sender === 'You' ? 'rounded-bl-3xl bg-sky-500 text-white' : 'rounded-br-3xl bg-neutral-200 dark:bg-neutral-800'} flex flex-col gap-x-1 rounded-t-3xl px-3.5 py-2`}
+								key={index}
+								className={`${isSenderYou ? 'justify-end' : 'justify-start'} font-sm flex w-full`}
 							>
-								<span
-									className={`${msg.sender === 'You' || msg.sender === chatName ? 'hidden' : ''} font-semibold opacity-60`}
+								<div
+									className={`${bubbleClasses} flex flex-col gap-x-1 rounded-t-3xl px-3.5 py-2`}
 								>
-									{msg.sender}
-								</span>
-								{msg.text}
+									<span
+										className={`${msg.sender === 'You' || msg.sender === chatName ? 'hidden' : ''} font-semibold opacity-60`}
+									>
+										{msg.sender}
+									</span>
+									<span
+										className={
+											isEmojiOnly
+												? '-me-4 pt-2 text-6xl'
+												: ''
+										}
+									>
+										{msg.text}
+									</span>
+								</div>
 							</div>
-						</div>
-					))}
+						);
+					})}
 				</div>
 
 				<div className="relative w-full pt-6 pb-4">
@@ -169,6 +194,25 @@ export default function ChatPage() {
 								}}
 							>
 								😭
+							</button>
+
+							<button
+								onClick={() => {
+									setShowReactionPopup(false);
+
+									const newMessage = {
+										sender: 'You',
+										text: '❤️'
+									};
+
+									chatMessages[slug as string].messages.push(
+										newMessage
+									);
+
+									setInputValue('');
+								}}
+							>
+								❤️
 							</button>
 						</div>
 					</div>

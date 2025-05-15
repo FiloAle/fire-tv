@@ -20,7 +20,15 @@ export const chatMessages: Record<
 		img: 'group',
 		name: 'Friends Group',
 		info: 'Alessandro, Tommaso, Daniela, You',
-		messages: [{ sender: 'Alessandro', text: 'Ciao!' }]
+		messages: [
+			{ sender: 'Tommaso', text: 'Hey guys! Are you ready?' },
+			{ sender: 'You', text: 'Is that even a question?' },
+			{ sender: 'Daniela', text: 'Come on Tommaso 😹' },
+			{
+				sender: 'Alessandro',
+				text: "Of course we are! I'm already tuned in."
+			}
+		]
 	},
 	daniela: {
 		img: 'daniela.avif',

@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 
 import Navbar from '@/app/components/navbar';
 import SplashScreen from '@/app/components/splash-screen';
+import { FavoritesProvider } from '@/app/context/favorites';
 
 const dmSans = DM_Sans({
 	variable: '--font-dm-sans',
@@ -41,7 +42,9 @@ export default function RootLayout({
 				className={`${dmSans.variable} ${dmMono.variable} antialiased`}
 			>
 				<SplashScreen />
-				{children}
+
+				<FavoritesProvider>{children}</FavoritesProvider>
+
 				{!hideNavbar && <Navbar />}
 			</body>
 		</html>
