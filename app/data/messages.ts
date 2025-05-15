@@ -5,10 +5,10 @@ export interface Message {
 
 export const chatMessages: Record<
 	string,
-	{ icon: string; name: string; info: string; messages: Message[] }
+	{ img: string; name: string; info: string; messages: Message[] }
 > = {
 	tommaso: {
-		icon: 'person',
+		img: 'tommaso.avif',
 		name: 'Tommaso',
 		info: 'Now watching Juventus - Monza',
 		messages: [
@@ -17,13 +17,13 @@ export const chatMessages: Record<
 		]
 	},
 	friendsgroup: {
-		icon: 'group',
+		img: 'group',
 		name: 'Friends Group',
 		info: 'Alessandro, Tommaso, Daniela, You',
 		messages: [{ sender: 'Alessandro', text: 'Ciao!' }]
 	},
 	daniela: {
-		icon: 'person',
+		img: 'daniela.avif',
 		name: 'Daniela',
 		info: 'Offline',
 		messages: [{ sender: 'Daniela', text: 'Ciaooo!' }]

@@ -38,7 +38,7 @@ export default function TVgether() {
 					{filteredChats.map(([slug, chatData], index) => (
 						<ChatListEntry
 							key={index}
-							icon={chatData.icon}
+							imgSrc={chatData.img}
 							chatName={chatData.name}
 						/>
 					))}

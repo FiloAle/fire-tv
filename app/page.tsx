@@ -119,12 +119,14 @@ export default function Home() {
 								eventImg="/imgs/juve.avif"
 								eventName="Juventus - Monza"
 								eventTime="Today, 20:45"
+								isFavorite={true}
 							/>
 
 							<EventCard
 								eventImg="/imgs/f1.avif"
 								eventName="Formula 1"
 								eventTime="Today, 21:00"
+								isFavorite={true}
 							/>
 						</div>
 					</div>

@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import EventCard from '@/app/components/event-card';
 import Link from 'next/link';
 import CircularBadge from '@/app/components/circular-badge';
@@ -143,12 +142,14 @@ export default function Account() {
 									eventImg="/imgs/juve.avif"
 									eventName="Juventus - Monza"
 									eventTime="Today, 20:45"
+									isFavorite={true}
 								/>
 
 								<EventCard
 									eventImg="/imgs/f1.avif"
 									eventName="Formula 1"
 									eventTime="Today, 21:00"
+									isFavorite={true}
 								/>
 							</div>
 						</div>
@@ -162,20 +163,18 @@ export default function Account() {
 						<div className="no-scrollbar overflow-x-scroll pb-8">
 							<div className="inline-flex gap-x-4 px-8">
 								<CircularBadge
-									imgSrc="/imgs/football.svg"
+									imgSrc="/imgs/tommaso.avif"
 									imgWidth={128}
 									imgHeight={128}
 									divClassName="overflow-hidden"
-									imgClassName="scale-150"
 									title="Tommaso Elli"
 								/>
 
 								<CircularBadge
-									imgSrc="/imgs/football.svg"
+									imgSrc="/imgs/daniela.avif"
 									imgWidth={128}
 									imgHeight={128}
 									divClassName="overflow-hidden"
-									imgClassName="scale-150"
 									title="Daniela Petrelli"
 								/>
 
@@ -183,8 +182,8 @@ export default function Account() {
 									imgSrc="/imgs/football.svg"
 									imgWidth={128}
 									imgHeight={128}
-									divClassName="overflow-hidden"
-									imgClassName="scale-150"
+									divClassName="overflow-hidden bg-neutral-500"
+									imgClassName="scale-50"
 									title="Alessandro Quets"
 								/>
 
@@ -192,8 +191,8 @@ export default function Account() {
 									imgSrc="/imgs/football.svg"
 									imgWidth={128}
 									imgHeight={128}
-									divClassName="overflow-hidden"
-									imgClassName="scale-150"
+									divClassName="overflow-hidden bg-neutral-500"
+									imgClassName="scale-50"
 									title="Filippo Alessandrini"
 								/>
 

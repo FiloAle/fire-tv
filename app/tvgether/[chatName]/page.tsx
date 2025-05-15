@@ -5,12 +5,13 @@ import { useState } from 'react';
 import { useParams } from 'next/navigation';
 import { chatMessages } from '@/app/data/messages';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function ChatPage() {
 	const params = useParams();
 	const slug = params.chatName;
 
-	const chatIcon = chatMessages[slug as string].icon;
+	const chatImg = chatMessages[slug as string].img;
 	const chatName = chatMessages[slug as string].name;
 	const chatInfo = chatMessages[slug as string].info;
 	var messages = chatMessages[slug as string].messages;
@@ -32,9 +33,22 @@ export default function ChatPage() {
 					keyboard_arrow_left
 				</Link>
 
-				<span className="material-symbols-rounded !text-5xl">
-					{chatIcon}
-				</span>
+				{chatImg !== 'group' ? (
+					<div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-neutral-200 dark:border-neutral-900">
+						<Image
+							src={'/imgs/' + chatImg}
+							alt=""
+							width={400}
+							height={400}
+						/>
+					</div>
+				) : (
+					<div className="flex h-12 w-12 items-center justify-center rounded-full border border-neutral-200 bg-neutral-200 dark:border-neutral-900 dark:bg-neutral-700">
+						<span className="material-symbols-rounded text-xl text-neutral-600 dark:text-white">
+							{chatImg}
+						</span>
+					</div>
+				)}
 
 				<div className="flex flex-col">
 					<h1 className="text-xl font-bold">{chatName}</h1>

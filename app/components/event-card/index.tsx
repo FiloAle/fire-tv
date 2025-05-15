@@ -1,13 +1,16 @@
+import { Toggle } from '@/components/ui/toggle';
 import Image from 'next/image';
 
 export default function EventCard({
 	eventImg,
 	eventName,
-	eventTime
+	eventTime,
+	isFavorite
 }: {
 	eventImg: string;
 	eventName: string;
 	eventTime: string;
+	isFavorite: boolean;
 }) {
 	return (
 		<div className="flex h-64 flex-col gap-y-2">
@@ -18,6 +21,19 @@ export default function EventCard({
 					fill
 					className="pointer-events-none object-cover"
 				/>
+
+				<Toggle
+					variant="default"
+					className="group absolute top-2 right-2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 backdrop-blur-sm transition-all hover:scale-110 hover:bg-white dark:bg-neutral-900/80 dark:text-white"
+				>
+					<span
+						className={`material-symbols-rounded !text-[1.4rem] text-white transition-all group-hover:text-black ${
+							isFavorite ? 'material-symbols-fill' : ''
+						}`}
+					>
+						favorite
+					</span>
+				</Toggle>
 			</div>
 
 			<div className="flex flex-col">

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { chatMessages } from '@/app/data/messages';
+import Image from 'next/image';
 
 function slugify(str: string) {
 	return str
@@ -12,10 +13,10 @@ function slugify(str: string) {
 }
 
 export default function ChatListEntry({
-	icon,
+	imgSrc,
 	chatName
 }: {
-	icon: string;
+	imgSrc: string;
 	chatName: string;
 }) {
 	const chatSlug = slugify(chatName);
@@ -28,9 +29,22 @@ export default function ChatListEntry({
 			className="flex h-24 w-full justify-start border-b border-neutral-500/20 font-sans"
 		>
 			<div className="flex h-full flex-row items-center justify-start gap-4 p-8">
-				<span className="material-symbols-rounded !text-5xl">
-					{icon}
-				</span>
+				{imgSrc !== 'group' ? (
+					<div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-neutral-200 dark:border-neutral-900">
+						<Image
+							src={'/imgs/' + imgSrc}
+							alt=""
+							width={400}
+							height={400}
+						/>
+					</div>
+				) : (
+					<div className="flex h-12 w-12 items-center justify-center rounded-full border border-neutral-200 bg-neutral-200 dark:border-neutral-900 dark:bg-neutral-700">
+						<span className="material-symbols-rounded text-xl text-neutral-600 dark:text-white">
+							{imgSrc}
+						</span>
+					</div>
+				)}
 
 				<div className="flex flex-col">
 					<h2 className="text-md font-bold">{chatName}</h2>
