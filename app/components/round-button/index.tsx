@@ -16,7 +16,7 @@ export default function RoundButton({
 	return (
 		<button
 			onClick={keyStroke ? () => pressKey(keyStroke) : undefined}
-			className={`${className} flex h-14 w-14 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-900`}
+			className={`${className} flex h-14 w-14 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-900`}
 		>
 			<span className="material-symbols-rounded !text-[2rem]">
 				{icon}

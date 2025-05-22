@@ -26,11 +26,11 @@ export default function ChatListEntry({
 	return (
 		<Link
 			href={`/tvgether/${chatSlug}`}
-			className="flex h-24 w-full justify-start border-b border-neutral-500/20 font-sans"
+			className="flex h-24 w-full justify-start border-b border-slate-500/20 font-sans"
 		>
 			<div className="flex h-full flex-row items-center justify-start gap-4 p-8">
 				{imgSrc !== 'group' ? (
-					<div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-neutral-200 dark:border-neutral-900">
+					<div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-slate-200 dark:border-slate-900">
 						<Image
 							src={'/imgs/' + imgSrc}
 							alt=""
@@ -39,8 +39,8 @@ export default function ChatListEntry({
 						/>
 					</div>
 				) : (
-					<div className="flex h-12 w-12 items-center justify-center rounded-full border border-neutral-200 bg-neutral-200 dark:border-neutral-900 dark:bg-neutral-700">
-						<span className="material-symbols-rounded text-xl text-neutral-600 dark:text-white">
+					<div className="flex !h-12 !w-12 shrink-0 items-center justify-center rounded-full border border-slate-300 bg-slate-200 dark:border-slate-800 dark:bg-slate-900">
+						<span className="material-symbols-rounded text-xl text-slate-800 dark:text-slate-100">
 							{imgSrc}
 						</span>
 					</div>
@@ -56,7 +56,7 @@ export default function ChatListEntry({
 							{lastMessage.sender}:
 						</p>
 
-						<p className="line-clamp-1 text-neutral-500">
+						<p className="line-clamp-1 text-slate-500">
 							{lastMessage.text}
 						</p>
 					</div>

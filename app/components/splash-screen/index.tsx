@@ -25,7 +25,7 @@ export default function SplashScreen() {
 
 	return (
 		<div
-			className={`${showSplash ? 'opacity-100' : 'opacity-0'} ${animationFinished ? 'hidden' : ''} fixed inset-0 z-50 flex h-screen w-screen items-center justify-center bg-white transition-opacity duration-500 dark:bg-black`}
+			className={`${showSplash ? 'opacity-100' : 'opacity-0'} ${animationFinished ? 'hidden' : ''} fixed inset-0 z-50 flex h-screen w-screen items-center justify-center bg-slate-100 transition-opacity duration-500 dark:bg-slate-950`}
 		>
 			<Image
 				className="-mt-18 dark:invert"

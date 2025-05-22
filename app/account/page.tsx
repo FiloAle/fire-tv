@@ -22,20 +22,20 @@ export default function Account() {
 				<div className="fixed z-30 flex w-screen flex-col items-center justify-end gap-x-8 pb-8">
 					<Link
 						href="/account/settings"
-						className="flex w-screen flex-row items-center justify-end gap-x-8 bg-white px-8 pt-8 pb-4 dark:bg-[#0a0a0a]"
+						className="flex w-screen flex-row items-center justify-end gap-x-8 bg-slate-100 px-8 pt-8 pb-4 dark:bg-slate-950"
 					>
 						<span className="material-symbols-rounded mt-1.5 !text-4xl">
 							settings
 						</span>
 					</Link>
 
-					<div className="h-4 w-screen bg-linear-to-b from-white to-transparent dark:from-[#0a0a0a]"></div>
+					<div className="h-4 w-screen bg-linear-to-b from-slate-100 to-transparent dark:from-slate-950"></div>
 				</div>
 
 				<div className="mt-30 flex h-full w-screen flex-col items-center gap-4">
 					<div className="h-full w-full">
 						<div className="flex h-full w-full flex-col items-center justify-start gap-4">
-							<div className="flex h-24 w-24 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-900">
+							<div className="flex h-24 w-24 items-center justify-center rounded-full bg-slate-300 dark:bg-slate-800">
 								<span className="material-symbols-rounded pb-1 !text-6xl">
 									person
 								</span>
@@ -127,7 +127,7 @@ export default function Account() {
 								/>
 
 								<div className="flex h-max w-max flex-col gap-3">
-									<div className="flex h-24 w-24 items-center justify-center rounded-full border border-neutral-200 bg-white dark:border-neutral-900 dark:bg-[#0a0a0a]">
+									<div className="flex h-24 w-24 items-center justify-center rounded-full border border-slate-300 bg-slate-100 dark:border-slate-800 dark:bg-slate-950">
 										<span className="material-symbols-rounded !text-5xl opacity-40">
 											add
 										</span>
@@ -192,8 +192,8 @@ export default function Account() {
 									imgSrc="/imgs/football.svg"
 									imgWidth={128}
 									imgHeight={128}
-									divClassName="overflow-hidden bg-neutral-500"
-									imgClassName="scale-50"
+									divClassName="overflow-hidden bg-slate-800"
+									imgClassName="scale-50 invert"
 									title="Alessandro Quets"
 								/>
 
@@ -201,13 +201,13 @@ export default function Account() {
 									imgSrc="/imgs/football.svg"
 									imgWidth={128}
 									imgHeight={128}
-									divClassName="overflow-hidden bg-neutral-500"
-									imgClassName="scale-50"
+									divClassName="overflow-hidden bg-slate-800"
+									imgClassName="scale-50 invert"
 									title="Filippo Alessandrini"
 								/>
 
 								<div className="flex h-max w-max flex-col gap-3">
-									<div className="flex h-24 w-24 items-center justify-center rounded-full border border-neutral-200 bg-white dark:border-neutral-900 dark:bg-[#0a0a0a]">
+									<div className="flex h-24 w-24 items-center justify-center rounded-full border border-slate-300 bg-slate-100 dark:border-slate-800 dark:bg-slate-950">
 										<span className="material-symbols-rounded !text-5xl opacity-40">
 											add
 										</span>

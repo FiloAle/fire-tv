@@ -1,6 +1,6 @@
 'use client';
 
-import { DM_Sans, DM_Mono } from 'next/font/google';
+import { DM_Mono, Figtree } from 'next/font/google';
 import './globals.css';
 
 import { usePathname } from 'next/navigation';
@@ -9,8 +9,8 @@ import Navbar from '@/app/components/navbar';
 import SplashScreen from '@/app/components/splash-screen';
 import { FavoritesProvider } from '@/app/context/favorites';
 
-const dmSans = DM_Sans({
-	variable: '--font-dm-sans',
+const figtree = Figtree({
+	variable: '--font-figtree',
 	subsets: ['latin']
 });
 
@@ -39,7 +39,7 @@ export default function RootLayout({
 			</head>
 
 			<body
-				className={`${dmSans.variable} ${dmMono.variable} antialiased`}
+				className={`${figtree.variable} ${dmMono.variable} antialiased`}
 			>
 				<SplashScreen />
 

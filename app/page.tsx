@@ -25,12 +25,12 @@ export default function Home() {
 					</span>
 				</div>
 
-				<div className="grid h-80 w-80 grid-cols-3 grid-rows-3 rounded-full bg-neutral-100 dark:bg-neutral-900">
+				<div className="grid h-80 w-80 grid-cols-3 grid-rows-3 rounded-full bg-slate-200 dark:bg-slate-900">
 					<div
 						onClick={() => pressKey('a')}
 						className="col-start-1 row-start-2 flex items-center justify-start p-2 ps-3"
 					>
-						<span className="material-symbols-rounded !text-6xl">
+						<span className="material-symbols-rounded !text-6xl text-orange-600">
 							keyboard_arrow_left
 						</span>
 					</div>
@@ -39,7 +39,7 @@ export default function Home() {
 						onClick={() => pressKey('d')}
 						className="col-start-3 row-start-2 flex items-center justify-end p-2 pe-3"
 					>
-						<span className="material-symbols-rounded !text-6xl">
+						<span className="material-symbols-rounded !text-6xl text-orange-600">
 							keyboard_arrow_right
 						</span>
 					</div>
@@ -47,7 +47,7 @@ export default function Home() {
 					<div className="col-start-2 row-start-2 flex items-center justify-center">
 						<button
 							onClick={() => pressKey('k')}
-							className="h-full w-full scale-[1.4] rounded-full bg-neutral-300 dark:bg-neutral-800"
+							className="h-full w-full scale-[1.4] rounded-full bg-slate-300 dark:bg-slate-800"
 						/>
 					</div>
 
@@ -55,7 +55,7 @@ export default function Home() {
 						onClick={() => pressKey('w')}
 						className="col-start-2 row-start-1 flex items-start justify-center p-2 pt-3"
 					>
-						<span className="material-symbols-rounded !text-6xl">
+						<span className="material-symbols-rounded !text-6xl text-orange-600">
 							keyboard_arrow_up
 						</span>
 					</div>
@@ -64,7 +64,7 @@ export default function Home() {
 						onClick={() => pressKey('s')}
 						className="col-start-2 row-start-3 flex items-end justify-center p-2 pb-3"
 					>
-						<span className="material-symbols-rounded !text-6xl">
+						<span className="material-symbols-rounded !text-6xl text-orange-600">
 							keyboard_arrow_down
 						</span>
 					</div>
@@ -77,13 +77,13 @@ export default function Home() {
 						<RoundButton
 							icon="home"
 							keyStroke="h"
-							className="!bg-sky-500 !text-white"
+							className="!bg-orange-600 !text-slate-100"
 						/>
 
 						<RoundButton icon="menu" keyStroke="m" />
 					</div>
 
-					<div className="flex w-full flex-row items-center justify-between rounded-full bg-neutral-100 dark:bg-neutral-900">
+					<div className="flex w-full flex-row items-center justify-between rounded-full bg-slate-200 dark:bg-slate-900">
 						<button
 							onClick={() => pressKey('-')}
 							className="flex h-14 w-14 items-center justify-center"
@@ -119,7 +119,7 @@ export default function Home() {
 
 						<Link
 							href="/schedule"
-							className="flex flex-row items-center justify-center text-sm opacity-20"
+							className="flex flex-row items-center justify-center text-sm opacity-30"
 						>
 							<h3>See schedule</h3>
 

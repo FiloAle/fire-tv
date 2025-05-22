@@ -30,7 +30,7 @@ export default function ChatPage() {
 	}
 
 	return (
-		<div className="flex h-screen w-screen flex-col justify-between p-8">
+		<div className="flex h-screen w-screen flex-col justify-between p-8 font-sans">
 			<div className="flex flex-row items-center justify-start gap-4">
 				<Link
 					href="/tvgether"
@@ -49,8 +49,8 @@ export default function ChatPage() {
 						/>
 					</div>
 				) : (
-					<div className="flex h-12 w-12 items-center justify-center rounded-full border border-neutral-200 bg-neutral-200 dark:border-neutral-900 dark:bg-neutral-700">
-						<span className="material-symbols-rounded text-xl text-neutral-600 dark:text-white">
+					<div className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-300 bg-slate-200 dark:border-neutral-800 dark:bg-slate-900">
+						<span className="material-symbols-rounded text-xl text-slate-800 dark:text-slate-100">
 							{chatImg}
 						</span>
 					</div>
@@ -71,8 +71,8 @@ export default function ChatPage() {
 						const bubbleClasses = isEmojiOnly
 							? ''
 							: isSenderYou
-								? 'rounded-bl-3xl bg-sky-500 text-white'
-								: 'rounded-br-3xl bg-neutral-200 dark:bg-neutral-800';
+								? 'rounded-bl-3xl bg-orange-600 text-white'
+								: 'rounded-br-3xl bg-slate-200 dark:bg-slate-800';
 
 						return (
 							<div
@@ -105,7 +105,7 @@ export default function ChatPage() {
 				<div className="relative w-full pt-6 pb-4">
 					<div className="flex h-full w-full flex-row items-center gap-4">
 						<input
-							className={`${showReactionPopup ? '!pointer-events-none' : ''} h-10 w-full rounded-full border border-neutral-400 bg-neutral-200 p-4 !outline-none dark:border-neutral-600 dark:bg-neutral-800`}
+							className={`${showReactionPopup ? '!pointer-events-none' : ''} h-10 w-full rounded-full border border-slate-400 bg-slate-200 p-4 !outline-none dark:border-slate-800 dark:bg-slate-900`}
 							type="text"
 							placeholder="Type a message..."
 							value={inputValue}
@@ -113,7 +113,7 @@ export default function ChatPage() {
 						/>
 
 						<button
-							className="material-symbols-rounded material-symbols-fill -me-1.5 cursor-pointer !text-4xl"
+							className="material-symbols-rounded material-symbols-fill -me-1.5 cursor-pointer !text-4xl text-slate-500 dark:text-slate-600"
 							onClick={() => {
 								if (inputValue.trim() === '')
 									setShowReactionPopup(!showReactionPopup);
@@ -136,7 +136,7 @@ export default function ChatPage() {
 					</div>
 
 					<div
-						className={`${showReactionPopup ? 'opacity-100' : '!pointer-events-none opacity-0 !select-none'} absolute right-0 bottom-20 rounded-full bg-neutral-200 px-5 py-4 shadow-lg transition-opacity duration-100 dark:bg-neutral-800`}
+						className={`${showReactionPopup ? 'opacity-100' : '!pointer-events-none opacity-0 !select-none'} absolute right-0 bottom-20 rounded-full bg-slate-300 px-5 py-4 shadow-lg transition-opacity duration-100 dark:bg-slate-900`}
 					>
 						<div className="flex flex-row gap-4 text-4xl">
 							<button

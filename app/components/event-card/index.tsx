@@ -2,6 +2,7 @@ import { useFavorites } from '@/app/context/favorites';
 import { Toggle } from '@/components/ui/toggle';
 import Image from 'next/image';
 import { format, isThisWeek, isToday, isTomorrow } from 'date-fns';
+import Link from 'next/link';
 
 export default function EventCard({
 	eventImg,
@@ -40,22 +41,35 @@ export default function EventCard({
 
 	return (
 		<div
-			className={`flex h-64 flex-col gap-y-2 ${fullWidth ? 'h-full w-full' : ''}`}
+			className={`flex h-64 flex-col gap-y-2 font-sans ${fullWidth ? 'h-full w-full' : ''}`}
 		>
 			<div
-				className={`relative h-52 ${fullWidth ? 'h-64 w-full' : 'w-80'} shrink-0 overflow-hidden rounded-xl shadow-lg dark:shadow-neutral-900/20`}
+				className={`relative h-52 ${fullWidth ? 'w-full' : 'w-80'} shrink-0 overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-900 dark:shadow-neutral-900/20`}
 			>
-				<Image
-					src={eventImg}
-					alt={eventName}
-					fill
-					className="pointer-events-none object-cover"
-				/>
+				<Link href={`/schedule/${encodeURIComponent(eventName)}`}>
+					<Image
+						src={eventImg}
+						alt={eventName}
+						fill
+						className="object-cover"
+					/>
+
+					<div className="absolute bottom-0 h-1/2 w-full bg-gradient-to-t from-black to-transparent px-3 py-2 text-slate-100">
+						<div className="flex h-full flex-col justify-end">
+							<h1 className="text-lg font-semibold">
+								{eventName}
+							</h1>
+							<h3 className="text-sm font-medium opacity-50">
+								{formatEventDate(eventTime)}
+							</h3>
+						</div>
+					</div>
+				</Link>
 
 				<Toggle
 					variant="default"
 					onClick={() => toggleFavorite(eventName)}
-					className="group absolute top-2 right-2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 backdrop-blur-sm transition-all hover:scale-110 hover:bg-white dark:bg-neutral-900/80 dark:text-white"
+					className="group absolute top-2 right-2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/40 backdrop-blur-sm transition-all hover:scale-110 hover:bg-white dark:bg-slate-900/60 dark:text-white"
 				>
 					<span
 						className={`material-symbols-rounded !text-[1.4rem] text-white transition-all group-hover:text-black ${
@@ -65,15 +79,6 @@ export default function EventCard({
 						favorite
 					</span>
 				</Toggle>
-			</div>
-
-			<div className="flex flex-col">
-				<h1 className="text-lg font-semibold opacity-80">
-					{eventName}
-				</h1>
-				<h3 className="text-sm font-medium opacity-20">
-					{formatEventDate(eventTime)}
-				</h3>
 			</div>
 		</div>
 	);

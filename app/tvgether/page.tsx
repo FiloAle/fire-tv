@@ -15,8 +15,8 @@ export default function TVgether() {
 		<div className="h-svh font-sans">
 			<main className="flex flex-col items-center gap-4">
 				<div className="fixed z-30 flex w-screen flex-col items-center justify-start gap-x-8 pb-8">
-					<div className="flex w-screen flex-row items-center justify-end gap-x-8 bg-white px-8 pt-8 pb-4 dark:bg-[#0a0a0a]">
-						<div className="ms-1 mt-1 flex h-12 w-full flex-row items-center justify-start gap-x-2 rounded-full bg-neutral-200 px-4 dark:bg-neutral-800">
+					<div className="flex w-screen flex-row items-center justify-end gap-x-8 bg-slate-100 px-8 pt-8 pb-4 dark:bg-slate-950">
+						<div className="ms-1 mt-1 flex h-12 w-full flex-row items-center justify-start gap-x-2 rounded-full bg-slate-200 px-4 dark:bg-slate-800">
 							<span className="material-symbols-rounded !text-2xl opacity-55">
 								search
 							</span>
@@ -31,7 +31,7 @@ export default function TVgether() {
 							filter_list
 						</span>
 					</div>
-					<div className="h-4 w-screen bg-linear-to-b from-white to-transparent dark:from-[#0a0a0a]"></div>
+					<div className="h-4 w-screen bg-linear-to-b from-slate-100 to-transparent dark:from-slate-950"></div>
 				</div>
 
 				<div className="mt-24 flex h-full w-full flex-col">
