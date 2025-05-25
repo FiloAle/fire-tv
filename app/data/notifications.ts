@@ -1,9 +1,10 @@
 import { Friend, friends } from '@/app/data/friends';
-import { Event, events } from './events';
+import { Event, events } from '@/app/data/events';
+import { chatMessages } from '@/app/data/messages';
 
 export interface Notification {
-	title: string;
-	desc: string;
+	title?: string;
+	desc?: string;
 	sender: Friend[] | 'System';
 	isInvitation: boolean;
 	event?: Event[];
@@ -11,27 +12,19 @@ export interface Notification {
 
 export const notificationsRaw: Notification[] = [
 	{
-		title: '',
-		desc: '',
 		sender: [friends[0]],
 		isInvitation: true
 	},
 	{
-		title: 'Upcoming event',
-		desc: '',
 		sender: 'System',
 		isInvitation: false,
 		event: [events[0]]
 	},
 	{
-		title: 'New message',
-		desc: "Have you seen this afternoon's F1 race?",
 		sender: [friends[1]],
 		isInvitation: false
 	},
 	{
-		title: 'Upcoming event',
-		desc: '',
 		sender: 'System',
 		isInvitation: false,
 		event: [events[1]]
@@ -50,7 +43,7 @@ export const notificationsEvents: Notification[] = notificationsRaw.map(
 	})
 );
 
-export const notifications: Notification[] = notificationsEvents.map(
+export const notificationsTitles: Notification[] = notificationsEvents.map(
 	(notification) => ({
 		...notification,
 		title:
@@ -58,10 +51,17 @@ export const notifications: Notification[] = notificationsEvents.map(
 			Array.isArray(notification.sender) &&
 			typeof notification.sender[0] === 'object'
 				? `Join ${notification.sender[0].name} in ${notification.event?.[0].eventName ?? 'an event'}.`
-				: notification.title === 'New message' &&
-					  typeof notification.sender[0] === 'object'
+				: typeof notification.sender[0] === 'object'
 					? `${notification.sender[0].name} sent you a message`
-					: notification.title,
+					: notification.sender === 'System'
+						? 'Upcoming event'
+						: notification.title
+	})
+);
+
+export const notifications: Notification[] = notificationsTitles.map(
+	(notification) => ({
+		...notification,
 		desc:
 			notification.isInvitation &&
 			Array.isArray(notification.sender) &&
@@ -69,6 +69,15 @@ export const notifications: Notification[] = notificationsEvents.map(
 				? `${notification.sender[0].name} sent you an invitation.`
 				: notification.title === 'Upcoming event'
 					? `Don't forget today's ${notification.event?.[0].eventName} event.`
-					: notification.desc
+					: typeof notification.sender[0] === 'object'
+						? (chatMessages[notification.sender[0].slug]?.messages
+								.filter((msg) =>
+									typeof notification.sender[0] === 'object'
+										? msg.sender ===
+											notification.sender[0].name
+										: ''
+								)
+								.at(-1)?.text ?? '')
+						: notification.desc
 	})
 );

@@ -80,7 +80,7 @@ const individualChats = [
 		messages: [
 			{
 				sender: friends[1].name,
-				text: 'Ciaooo!',
+				text: "Have you watched this afternoon's F1 race?",
 				timestamp: '2025-05-21T09:30:00Z'
 			}
 		]

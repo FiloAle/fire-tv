@@ -1,4 +1,4 @@
-import { Event, events } from './events';
+import { Event, events } from '@/app/data/events';
 
 export interface Friend {
 	name: string;

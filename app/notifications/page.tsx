@@ -29,8 +29,17 @@ export default function Notifications() {
 				<div className="mt-28 flex h-full w-screen flex-col items-center gap-4">
 					<div className="flex w-screen flex-col items-center gap-y-4 px-8">
 						{notifications.map((notification, index) => (
-							<div
+							<Link
 								key={index}
+								href={
+									notification.event &&
+									typeof notification.sender === 'string'
+										? `/schedule/${encodeURIComponent(notification.event?.[0].eventName ?? '')}`
+										: typeof notification.sender ===
+											  'object'
+											? `/tvgether/${notification.sender[0].slug}`
+											: `/`
+								}
 								className={`flex w-full items-center gap-4 rounded-xl p-4 shadow-sm ${
 									notification.isInvitation
 										? 'border border-orange-500 bg-gradient-to-b from-[#FF3501] to-[#E11700]'
@@ -65,7 +74,7 @@ export default function Notifications() {
 										{notification.desc}
 									</p>
 								</div>
-							</div>
+							</Link>
 						))}
 					</div>
 				</div>
