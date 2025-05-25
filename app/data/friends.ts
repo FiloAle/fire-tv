@@ -1,8 +1,11 @@
+import { Event, events } from './events';
+
 export interface Friend {
 	name: string;
 	info: string;
 	imgSrc: string;
 	slug: string;
+	event?: Event[];
 }
 
 function slugify(str: string) {
@@ -18,8 +21,8 @@ function slugify(str: string) {
 export const friendsRaw = [
 	{
 		name: 'Tommaso',
-		info: 'Watching Juventus - Monza',
-		imgSrc: '/imgs/tommaso.avif'
+		imgSrc: '/imgs/tommaso.avif',
+		event: [events[0]]
 	},
 	{
 		name: 'Daniela',
@@ -32,12 +35,15 @@ export const friendsRaw = [
 	},
 	{
 		name: 'Filippo',
-		info: 'Now watching Juventus - Monza'
+		event: [events[1]]
 	}
 ];
 
 export const friends: Friend[] = friendsRaw.map((friend) => ({
 	...friend,
 	slug: slugify(friend.name),
-	imgSrc: friend.imgSrc || '/imgs/account.avif'
+	imgSrc: friend.imgSrc || '/imgs/account.avif',
+	info: friend.event
+		? `Now watching ${friend.event[0].eventName}`
+		: (friend.info ?? '')
 }));

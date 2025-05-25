@@ -14,8 +14,7 @@ export const notificationsRaw: Notification[] = [
 		title: '',
 		desc: '',
 		sender: [friends[0]],
-		isInvitation: true,
-		event: [events[1]]
+		isInvitation: true
 	},
 	{
 		title: 'Upcoming event',
@@ -39,14 +38,26 @@ export const notificationsRaw: Notification[] = [
 	}
 ];
 
-export const notifications: Notification[] = notificationsRaw.map(
+export const notificationsEvents: Notification[] = notificationsRaw.map(
+	(notification) => ({
+		...notification,
+		event:
+			notification.isInvitation &&
+			Array.isArray(notification.sender) &&
+			typeof notification.sender[0] === 'object'
+				? notification.sender[0].event
+				: notification.event
+	})
+);
+
+export const notifications: Notification[] = notificationsEvents.map(
 	(notification) => ({
 		...notification,
 		title:
 			notification.isInvitation &&
 			Array.isArray(notification.sender) &&
 			typeof notification.sender[0] === 'object'
-				? `Join ${notification.sender[0].name} in ${notification.event?.[0]?.eventName ?? 'an event'}.`
+				? `Join ${notification.sender[0].name} in ${notification.event?.[0].eventName ?? 'an event'}.`
 				: notification.title === 'New message' &&
 					  typeof notification.sender[0] === 'object'
 					? `${notification.sender[0].name} sent you a message`

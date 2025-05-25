@@ -34,7 +34,7 @@ export default function Notifications() {
 								className={`flex w-full items-center gap-4 rounded-xl p-4 shadow-sm ${
 									notification.isInvitation
 										? 'border border-orange-500 bg-gradient-to-b from-[#FF3501] to-[#E11700]'
-										: 'border border-slate-300 bg-white dark:border-slate-800 dark:bg-slate-900'
+										: 'border border-slate-300 bg-slate-50 dark:border-slate-800 dark:bg-slate-900'
 								}`}
 							>
 								<div
@@ -54,11 +54,13 @@ export default function Notifications() {
 								</div>
 
 								<div>
-									<h2 className="text-base font-semibold">
+									<h2
+										className={`line-clamp-1 font-semibold ${notification.isInvitation ? 'text-slate-50' : ''}`}
+									>
 										{notification.title}
 									</h2>
 									<p
-										className={`text-sm ${notification.isInvitation ? 'text-slate-200' : 'text-slate-600 dark:text-slate-400'}`}
+										className={`line-clamp-1 text-sm ${notification.isInvitation ? 'text-slate-100' : 'text-slate-600 dark:text-slate-400'}`}
 									>
 										{notification.desc}
 									</p>
