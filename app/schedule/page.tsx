@@ -1,24 +1,25 @@
 'use client';
 
+import { useState } from 'react';
 import EventCard from '@/app/components/event-card';
 import Link from 'next/link';
 import { useFavorites } from '@/app/context/favorites';
 import { format, isThisWeek, addDays } from 'date-fns';
-// Helper to generate group labels for dates
+
 function getDateGroupLabel(date: Date) {
 	const today = new Date();
-	// Set start of today to midnight for accurate comparison
+
 	const baseToday = new Date(
 		today.getFullYear(),
 		today.getMonth(),
 		today.getDate()
 	);
-	// Start of next week (Monday)
+
 	const startOfNextWeek = addDays(
 		baseToday,
 		7 - (baseToday.getDay() === 0 ? 6 : baseToday.getDay() - 1)
 	);
-	// Start of next month
+
 	const startOfNextMonth = new Date(
 		baseToday.getFullYear(),
 		baseToday.getMonth() + 1,
@@ -42,42 +43,69 @@ function getDateGroupLabel(date: Date) {
 
 export default function Schedule() {
 	const { events, toggleFavorite } = useFavorites();
+	const [filter, setFilter] = useState<'all' | 'favorites'>('all');
 
 	return (
-		<div className="h-full pb-12 font-sans">
+		<div className="h-full min-h-svh pb-12 font-sans">
 			<main className="flex flex-col items-center gap-10">
-				<div className="fixed z-30 flex w-screen flex-col items-center justify-end gap-x-8 pb-8">
-					<div className="flex w-full flex-row items-center justify-start bg-slate-100 p-8 pb-4 dark:bg-slate-950">
-						<Link
-							href="/"
-							className="material-symbols-rounded material-symbols-fill mt-1.5 !text-3xl"
-						>
-							arrow_back_ios
-						</Link>
+				<div className="fixed z-30 flex w-screen flex-col items-center justify-end gap-x-8">
+					<div className="z-50 bg-slate-100 pt-8 pb-4 dark:bg-slate-950">
+						<div className="flex w-screen flex-row items-center justify-start px-8">
+							<Link
+								href="/"
+								className="material-symbols-rounded material-symbols-fill mt-1.5 !text-3xl"
+							>
+								arrow_back_ios
+							</Link>
 
-						<h1 className="mt-[7px] text-xl font-medium">
-							Schedule
-						</h1>
+							<h1 className="mt-[7px] text-xl font-medium">
+								Schedule
+							</h1>
+						</div>
 					</div>
 
-					<div className="h-4 w-screen bg-linear-to-b from-slate-100 to-transparent dark:from-slate-950"></div>
+					<div className="h-4 w-screen bg-linear-to-b from-slate-100 to-transparent dark:from-slate-950" />
 				</div>
 
-				<div className="mt-30 flex h-full w-screen flex-col items-center gap-4">
+				<div className="mt-28 flex h-full w-screen flex-col items-center gap-4">
+					<div className="flex w-full flex-row items-start justify-start gap-2 px-8 pb-4">
+						<button
+							onClick={() => setFilter('all')}
+							className={`text-md rounded-full px-4 py-1 font-medium ${
+								filter === 'all'
+									? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900'
+									: 'bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
+							}`}
+						>
+							All
+						</button>
+						<button
+							onClick={() => setFilter('favorites')}
+							className={`text-md rounded-full px-4 py-1 font-medium ${
+								filter === 'favorites'
+									? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900'
+									: 'bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
+							}`}
+						>
+							Favorites
+						</button>
+					</div>
 					<div className="flex w-screen flex-col items-center gap-y-8 px-8">
 						{Object.entries(
-							events.reduce(
-								(acc, event) => {
-									const dateKey = format(
-										new Date(event.eventTime),
-										'yyyy-MM-dd'
-									);
-									if (!acc[dateKey]) acc[dateKey] = [];
-									acc[dateKey].push(event);
-									return acc;
-								},
-								{} as Record<string, typeof events>
-							)
+							events
+								.filter((e) => filter === 'all' || e.isFavorite)
+								.reduce(
+									(acc, event) => {
+										const dateKey = format(
+											new Date(event.eventTime),
+											'yyyy-MM-dd'
+										);
+										if (!acc[dateKey]) acc[dateKey] = [];
+										acc[dateKey].push(event);
+										return acc;
+									},
+									{} as Record<string, typeof events>
+								)
 						)
 							.sort(
 								([a], [b]) =>

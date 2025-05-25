@@ -56,7 +56,7 @@ export default function EventDetailPage() {
 				<Toggle
 					variant="default"
 					onClick={() => toggleFavorite(event.eventName)}
-					className="group fixed top-8.5 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-white/40 backdrop-blur-sm transition-all hover:scale-110 hover:bg-white dark:bg-slate-900/60 dark:text-white"
+					className="group fixed top-8.5 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-white/40 backdrop-blur-sm transition-all hover:scale-110 hover:bg-white dark:bg-slate-900/60 dark:text-white"
 				>
 					<span
 						className={`material-symbols-rounded !text-[1.4rem] text-white transition-all group-hover:text-black ${
@@ -76,23 +76,27 @@ export default function EventDetailPage() {
 						</p>
 					</div>
 
-					<div className="mt-4 flex h-14 w-full flex-col items-center justify-center overflow-clip rounded-2xl border border-orange-500 bg-gradient-to-b from-[#FF3501] to-[#E11700] shadow-lg backdrop-blur-xl dark:shadow-neutral-900/20">
+					<div className="mt-4 flex h-14 w-full flex-col items-center justify-center overflow-clip rounded-2xl border border-orange-500 bg-gradient-to-b from-[#FF3501] to-[#E11700] shadow-lg dark:shadow-neutral-900/20">
 						<p className="w-full text-center text-2xl font-bold text-neutral-100">
-							Watch
+							Co-watch
 						</p>
 					</div>
 
 					<div className="flex h-14 w-full flex-col items-center justify-center overflow-clip rounded-2xl border border-slate-100 bg-slate-200/70 shadow-lg backdrop-blur-xl dark:border-slate-800 dark:bg-slate-950/75 dark:shadow-neutral-900/20">
 						<p className="w-full text-center text-2xl font-bold text-neutral-100">
-							Join Co-Watch
+							Watch
 						</p>
 					</div>
 				</div>
 			</div>
 
+			<div className="w-full px-8 pt-4 pb-2">
+				<p className="opacity-60">{event.eventDesc}</p>
+			</div>
+
 			<div className="flex w-full flex-col gap-y-4 pt-4">
 				<div className="flex flex-row items-center justify-between px-8">
-					<h1 className="text-xl font-bold">Next events</h1>
+					<h1 className="text-xl font-bold">You may also like</h1>
 				</div>
 
 				<div className="no-scrollbar overflow-x-scroll pb-8">

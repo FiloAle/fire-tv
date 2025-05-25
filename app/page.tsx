@@ -20,9 +20,12 @@ export default function Home() {
 						power_settings_circle
 					</span>
 
-					<span className="material-symbols-rounded mt-1 !text-4xl">
+					<Link
+						href="/notifications"
+						className="material-symbols-rounded mt-1 !text-4xl"
+					>
 						notifications_unread
-					</span>
+					</Link>
 				</div>
 
 				<div className="grid h-80 w-80 grid-cols-3 grid-rows-3 rounded-full bg-slate-200 dark:bg-slate-900">

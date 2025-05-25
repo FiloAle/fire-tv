@@ -31,12 +31,7 @@ export default function ChatListEntry({
 			<div className="flex h-full flex-row items-center justify-start gap-4 p-8">
 				{imgSrc !== 'group' ? (
 					<div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-slate-200 dark:border-slate-900">
-						<Image
-							src={'/imgs/' + imgSrc}
-							alt=""
-							width={400}
-							height={400}
-						/>
+						<Image src={imgSrc} alt="" width={400} height={400} />
 					</div>
 				) : (
 					<div className="flex !h-12 !w-12 shrink-0 items-center justify-center rounded-full border border-slate-300 bg-slate-200 dark:border-slate-800 dark:bg-slate-900">

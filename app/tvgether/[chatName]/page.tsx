@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import { useParams } from 'next/navigation';
 import { chatMessages } from '@/app/data/messages';
 import Link from 'next/link';
 import Image from 'next/image';
+import { timeStamp } from 'console';
 
 export default function ChatPage() {
 	const params = useParams();
@@ -19,6 +20,12 @@ export default function ChatPage() {
 	const [inputValue, setInputValue] = useState('');
 	const [showReactionPopup, setShowReactionPopup] = useState(false);
 
+	const messagesEndRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		messagesEndRef.current?.scrollIntoView({ behavior: 'auto' });
+	}, []);
+
 	if (!messages) {
 		return <p>Chat not found.</p>;
 	}
@@ -30,39 +37,43 @@ export default function ChatPage() {
 	}
 
 	return (
-		<div className="flex h-screen w-screen flex-col justify-between p-8 font-sans">
-			<div className="flex flex-row items-center justify-start gap-4">
-				<Link
-					href="/tvgether"
-					className="material-symbols-rounded -ms-3 -me-5 !text-5xl"
-				>
-					keyboard_arrow_left
-				</Link>
+		<div className="flex min-h-svh w-screen flex-col justify-end p-8 font-sans">
+			<div className="fixed top-0 flex w-screen flex-col">
+				<div className="flex flex-row items-center justify-start gap-4 bg-slate-100 pt-8 dark:bg-slate-950">
+					<Link
+						href="/tvgether"
+						className="material-symbols-rounded -me-3.5 !text-3xl"
+					>
+						arrow_back_ios
+					</Link>
 
-				{chatImg !== 'group' ? (
-					<div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-neutral-200 dark:border-neutral-900">
-						<Image
-							src={'/imgs/' + chatImg}
-							alt=""
-							width={400}
-							height={400}
-						/>
-					</div>
-				) : (
-					<div className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-300 bg-slate-200 dark:border-neutral-800 dark:bg-slate-900">
-						<span className="material-symbols-rounded text-xl text-slate-800 dark:text-slate-100">
-							{chatImg}
-						</span>
-					</div>
-				)}
+					{chatImg !== 'group' ? (
+						<div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-neutral-200 dark:border-neutral-900">
+							<Image
+								src={chatImg}
+								alt=""
+								width={400}
+								height={400}
+							/>
+						</div>
+					) : (
+						<div className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-300 bg-slate-200 dark:border-neutral-800 dark:bg-slate-900">
+							<span className="material-symbols-rounded text-xl text-slate-800 dark:text-slate-100">
+								{chatImg}
+							</span>
+						</div>
+					)}
 
-				<div className="flex flex-col">
-					<h1 className="text-xl font-bold">{chatName}</h1>
-					<p className="text-sm opacity-60">{chatInfo}</p>
+					<div className="flex flex-col">
+						<h1 className="text-xl font-bold">{chatName}</h1>
+						<p className="text-sm opacity-60">{chatInfo}</p>
+					</div>
 				</div>
+
+				<div className="z-30 h-4 w-screen bg-linear-to-b from-slate-100 to-transparent dark:from-slate-950" />
 			</div>
 
-			<div className="flex flex-col">
+			<div className="bottom-0 flex flex-col">
 				<div className="flex flex-col justify-end gap-y-2">
 					{messages.map((msg, index) => {
 						const isEmojiOnly = isMsgOnlyEmoji(msg.text);
@@ -100,6 +111,7 @@ export default function ChatPage() {
 							</div>
 						);
 					})}
+					<div ref={messagesEndRef} />
 				</div>
 
 				<div className="relative w-full pt-6 pb-4">
@@ -113,14 +125,19 @@ export default function ChatPage() {
 						/>
 
 						<button
-							className="material-symbols-rounded material-symbols-fill -me-1.5 cursor-pointer !text-4xl text-slate-500 dark:text-slate-600"
+							className={`material-symbols-rounded material-symbols-fill -me-1.5 cursor-pointer !text-4xl ${
+								inputValue.trim() !== ''
+									? 'text-orange-600'
+									: 'text-slate-500 transition-all hover:text-orange-600 dark:text-slate-600'
+							}`}
 							onClick={() => {
 								if (inputValue.trim() === '')
 									setShowReactionPopup(!showReactionPopup);
 								else {
 									const newMessage = {
 										sender: 'You',
-										text: inputValue.trim()
+										text: inputValue.trim(),
+										timestamp: new Date().toISOString()
 									};
 
 									chatMessages[slug as string].messages.push(
@@ -145,7 +162,8 @@ export default function ChatPage() {
 
 									const newMessage = {
 										sender: 'You',
-										text: '😄'
+										text: '😄',
+										timestamp: new Date().toISOString()
 									};
 
 									chatMessages[slug as string].messages.push(
@@ -164,7 +182,8 @@ export default function ChatPage() {
 
 									const newMessage = {
 										sender: 'You',
-										text: '🥳'
+										text: '🥳',
+										timestamp: new Date().toISOString()
 									};
 
 									chatMessages[slug as string].messages.push(
@@ -183,7 +202,8 @@ export default function ChatPage() {
 
 									const newMessage = {
 										sender: 'You',
-										text: '😭'
+										text: '😭',
+										timestamp: new Date().toISOString()
 									};
 
 									chatMessages[slug as string].messages.push(
@@ -202,7 +222,8 @@ export default function ChatPage() {
 
 									const newMessage = {
 										sender: 'You',
-										text: '❤️'
+										text: '❤️',
+										timestamp: new Date().toISOString()
 									};
 
 									chatMessages[slug as string].messages.push(

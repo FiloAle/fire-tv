@@ -20,7 +20,7 @@ export default function CircularBadge({
 	return (
 		<div className="flex h-max w-max flex-col items-center gap-3">
 			<div
-				className={`flex h-24 w-24 items-center justify-center rounded-full border border-neutral-200 dark:border-neutral-900 ${divClassName}`}
+				className={`flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-neutral-200 dark:border-neutral-900 ${divClassName}`}
 			>
 				<Image
 					src={imgSrc}

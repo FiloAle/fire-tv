@@ -3,6 +3,7 @@ export interface Event {
 	eventName: string;
 	eventTime: string;
 	eventInfo: string;
+	eventDesc: string;
 	isFavorite: boolean;
 }
 
@@ -12,6 +13,8 @@ export const events: Event[] = [
 		eventName: 'Juventus - Monza',
 		eventTime: '2025-05-25T20:45:00',
 		eventInfo: 'Serie A',
+		eventDesc:
+			'Juventus are going to face the last match of this Serie A season against an almost-relegated Venezia.',
 		isFavorite: true
 	},
 	{
@@ -19,6 +22,8 @@ export const events: Event[] = [
 		eventName: 'Formula 1',
 		eventTime: '2025-05-25T16:00:00',
 		eventInfo: 'Sprint Race',
+		eventDesc:
+			'The fight for the championship intensifies at the Spanish Grand Prix as Max Verstappen, Charles Leclerc, and Lewis Hamilton go wheel-to-wheel on one of F1’s most technical circuits.',
 		isFavorite: false
 	},
 	{
@@ -26,6 +31,8 @@ export const events: Event[] = [
 		eventName: 'PSG - Inter',
 		eventTime: '2025-05-31T21:00:00',
 		eventInfo: 'UEFA Champions League',
+		eventDesc:
+			'A thrilling showdown awaits as PSG take on Inter in the UEFA Champions League Final. Don’t miss this epic clash for European glory!',
 		isFavorite: true
 	},
 	{
@@ -33,6 +40,8 @@ export const events: Event[] = [
 		eventName: 'Norway - Italy',
 		eventTime: '2025-06-06T20:45:00',
 		eventInfo: 'UEFA Nations League',
+		eventDesc:
+			'High stakes in the Nations League as Norway and Italy face off, both vying for a spot in the finals and crucial ranking points.',
 		isFavorite: false
 	}
 ];

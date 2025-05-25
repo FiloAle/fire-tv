@@ -7,9 +7,15 @@ import { chatMessages } from '@/app/data/messages';
 export default function TVgether() {
 	const [searchTerm, setSearchTerm] = useState('');
 
-	const filteredChats = Object.entries(chatMessages).filter(([slug, data]) =>
-		data.name.toLowerCase().includes(searchTerm.toLowerCase())
-	);
+	const filteredChats = Object.entries(chatMessages)
+		.filter(([_, data]) =>
+			data.name.toLowerCase().includes(searchTerm.toLowerCase())
+		)
+		.sort(([, a], [, b]) => {
+			const aTime = a.messages.at(-1)?.timestamp ?? '';
+			const bTime = b.messages.at(-1)?.timestamp ?? '';
+			return bTime.localeCompare(aTime); // descending
+		});
 
 	return (
 		<div className="h-svh font-sans">

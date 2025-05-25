@@ -11,7 +11,7 @@ export default function Navbar() {
 			<div className="flex flex-row gap-x-18 py-2">
 				<Link
 					href="/"
-					className={`${pathname === '/' || pathname.startsWith('/schedule') ? 'opacity-100' : 'opacity-40 dark:opacity-30'} flex h-full flex-col items-center gap-y-0.5 text-xs transition-opacity duration-200`}
+					className={`${pathname === '/' || pathname.startsWith('/schedule') || pathname === '/notifications' ? 'opacity-100' : 'opacity-40 dark:opacity-30'} flex h-full flex-col items-center gap-y-0.5 text-xs transition-opacity duration-200`}
 				>
 					<span className="material-symbols-rounded !text-3xl">
 						tv_remote

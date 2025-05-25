@@ -1,6 +1,7 @@
 'use client';
 
 import EventCard from '@/app/components/event-card';
+import { friends } from '@/app/data/friends';
 import Link from 'next/link';
 import CircularBadge from '@/app/components/circular-badge';
 import { useFavorites } from '@/app/context/favorites';
@@ -172,39 +173,15 @@ export default function Account() {
 
 						<div className="no-scrollbar overflow-x-scroll pb-8">
 							<div className="inline-flex gap-x-4 px-8">
-								<CircularBadge
-									imgSrc="/imgs/tommaso.avif"
-									imgWidth={128}
-									imgHeight={128}
-									divClassName="overflow-hidden"
-									title="Tommaso Elli"
-								/>
-
-								<CircularBadge
-									imgSrc="/imgs/daniela.avif"
-									imgWidth={128}
-									imgHeight={128}
-									divClassName="overflow-hidden"
-									title="Daniela Petrelli"
-								/>
-
-								<CircularBadge
-									imgSrc="/imgs/football.svg"
-									imgWidth={128}
-									imgHeight={128}
-									divClassName="overflow-hidden bg-slate-800"
-									imgClassName="scale-50 invert"
-									title="Alessandro Quets"
-								/>
-
-								<CircularBadge
-									imgSrc="/imgs/football.svg"
-									imgWidth={128}
-									imgHeight={128}
-									divClassName="overflow-hidden bg-slate-800"
-									imgClassName="scale-50 invert"
-									title="Filippo Alessandrini"
-								/>
+								{friends.map((friend) => (
+									<CircularBadge
+										key={friend.slug}
+										imgSrc={friend.imgSrc}
+										imgWidth={128}
+										imgHeight={128}
+										title={friend.name}
+									/>
+								))}
 
 								<div className="flex h-max w-max flex-col gap-3">
 									<div className="flex h-24 w-24 items-center justify-center rounded-full border border-slate-300 bg-slate-100 dark:border-slate-800 dark:bg-slate-950">
