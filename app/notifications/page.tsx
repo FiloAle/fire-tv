@@ -34,10 +34,10 @@ export default function Notifications() {
 								href={
 									notification.event &&
 									typeof notification.sender === 'string'
-										? `/schedule/${encodeURIComponent(notification.event?.[0].eventName ?? '')}`
+										? `/schedule/${encodeURIComponent(notification.event?.eventName ?? '')}`
 										: typeof notification.sender ===
 											  'object'
-											? `/tvgether/${notification.sender[0].slug}`
+											? `/tvgether/${notification.sender.slug}`
 											: `/`
 								}
 								className={`flex w-full items-center gap-4 rounded-xl p-4 shadow-sm ${
@@ -55,7 +55,7 @@ export default function Notifications() {
 										</span>
 									) : (
 										<img
-											src={notification.sender[0].imgSrc}
+											src={notification.sender.imgSrc}
 											alt=""
 											className="h-full w-full object-cover"
 										/>

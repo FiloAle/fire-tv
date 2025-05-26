@@ -5,7 +5,7 @@ export interface Friend {
 	info: string;
 	imgSrc: string;
 	slug: string;
-	event?: Event[];
+	event?: Event;
 }
 
 function slugify(str: string) {
@@ -22,7 +22,7 @@ export const friendsRaw = [
 	{
 		name: 'Tommaso',
 		imgSrc: '/imgs/tommaso.avif',
-		event: [events[0]]
+		event: events[0]
 	},
 	{
 		name: 'Daniela',
@@ -35,7 +35,7 @@ export const friendsRaw = [
 	},
 	{
 		name: 'Filippo',
-		event: [events[1]]
+		event: events[1]
 	}
 ];
 
@@ -44,6 +44,6 @@ export const friends: Friend[] = friendsRaw.map((friend) => ({
 	slug: slugify(friend.name),
 	imgSrc: friend.imgSrc || '/imgs/account.avif',
 	info: friend.event
-		? `Now watching ${friend.event[0].eventName}`
+		? `Now watching ${friend.event.eventName}`
 		: (friend.info ?? '')
 }));
