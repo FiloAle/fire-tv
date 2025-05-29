@@ -14,7 +14,7 @@ export const events: Event[] = [
 		eventTime: '2025-05-29T12:30:00',
 		eventInfo: 'Serie A',
 		eventDesc:
-			'Juventus are going to face the last match of this Serie A season against an almost-relegated Monza.',
+			'Juventus are going to face the last match of this Serie A season against an already-relegated Monza.',
 		isFavorite: true
 	},
 	{
