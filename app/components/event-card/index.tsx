@@ -17,7 +17,6 @@ export default function EventCard({
 }) {
 	const { events, toggleFavorite } = useFavorites();
 
-	// Trova l'evento attuale nello stato globale
 	const event = events.find((e) => e.eventName === eventName);
 	const isFavorite = event?.isFavorite ?? false;
 
@@ -41,7 +40,7 @@ export default function EventCard({
 
 	return (
 		<div
-			className={`flex h-64 flex-col gap-y-2 font-sans ${fullWidth ? 'h-full w-full' : ''}`}
+			className={`flex h-full flex-col gap-y-2 font-sans ${fullWidth ? 'w-full' : ''}`}
 		>
 			<div
 				className={`relative h-52 ${fullWidth ? 'w-full' : 'w-80'} shrink-0 overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-900 dark:shadow-neutral-900/20`}

@@ -35,6 +35,7 @@ export const friendsRaw = [
 	},
 	{
 		name: 'Filippo',
+		imgSrc: '/imgs/filippo.avif',
 		event: events[1]
 	}
 ];
@@ -44,6 +45,6 @@ export const friends: Friend[] = friendsRaw.map((friend) => ({
 	slug: slugify(friend.name),
 	imgSrc: friend.imgSrc || '/imgs/account.avif',
 	info: friend.event
-		? `Now watching ${friend.event.eventName}`
+		? `Watching ${friend.event.eventName}`
 		: (friend.info ?? '')
 }));

@@ -18,7 +18,7 @@ export default function Account() {
 		);
 
 	return (
-		<div className="h-full font-sans">
+		<div className="h-full pb-32 font-sans">
 			<main className="flex flex-col items-center gap-10">
 				<div className="fixed z-30 flex w-screen flex-col items-center justify-end gap-x-8 pb-8">
 					<Link
@@ -171,7 +171,7 @@ export default function Account() {
 							<h1 className="text-xl font-bold">Friends</h1>
 						</div>
 
-						<div className="no-scrollbar overflow-x-scroll pb-8">
+						<div className="no-scrollbar overflow-x-scroll">
 							<div className="inline-flex gap-x-4 px-8">
 								{friends.map((friend) => (
 									<CircularBadge

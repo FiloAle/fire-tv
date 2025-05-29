@@ -10,7 +10,7 @@ export default function Home() {
 	const { events, toggleFavorite } = useFavorites();
 
 	return (
-		<div className="h-full font-sans">
+		<div className="h-full pb-32 font-sans">
 			<main className="flex flex-col items-center gap-10">
 				<div className="flex w-full flex-row items-center justify-between p-8 pb-0">
 					<span
@@ -132,7 +132,7 @@ export default function Home() {
 						</Link>
 					</div>
 
-					<div className="no-scrollbar overflow-x-scroll pb-8">
+					<div className="no-scrollbar overflow-x-scroll">
 						<div className="inline-flex gap-x-4 px-8">
 							{events
 								.sort(

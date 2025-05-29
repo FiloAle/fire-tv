@@ -41,12 +41,39 @@ function getDateGroupLabel(date: Date) {
 	return format(date, 'MMMM');
 }
 
+function getGroupKey(date: Date) {
+	const baseToday = new Date();
+	const startOfNextWeek = addDays(
+		baseToday,
+		7 - (baseToday.getDay() === 0 ? 6 : baseToday.getDay() - 1)
+	);
+	const startOfNextMonth = new Date(
+		baseToday.getFullYear(),
+		baseToday.getMonth() + 1,
+		1
+	);
+
+	if (isThisWeek(date, { weekStartsOn: 1 })) {
+		return 'this-week';
+	}
+	if (date >= startOfNextWeek && date < startOfNextMonth) {
+		return 'next-week';
+	}
+	if (
+		date.getMonth() === baseToday.getMonth() &&
+		date.getFullYear() === baseToday.getFullYear()
+	) {
+		return 'this-month';
+	}
+	return format(date, 'MMMM-yyyy');
+}
+
 export default function Schedule() {
 	const { events, toggleFavorite } = useFavorites();
 	const [filter, setFilter] = useState<'all' | 'favorites'>('all');
 
 	return (
-		<div className="h-full min-h-svh pb-12 font-sans">
+		<div className="h-full min-h-svh pb-32 font-sans">
 			<main className="flex flex-col items-center gap-10">
 				<div className="fixed z-30 flex w-screen flex-col items-center justify-end gap-x-8">
 					<div className="z-50 bg-slate-100 pt-8 pb-4 dark:bg-slate-950">
@@ -96,9 +123,8 @@ export default function Schedule() {
 								.filter((e) => filter === 'all' || e.isFavorite)
 								.reduce(
 									(acc, event) => {
-										const dateKey = format(
-											new Date(event.eventTime),
-											'yyyy-MM-dd'
+										const dateKey = getGroupKey(
+											new Date(event.eventTime)
 										);
 										if (!acc[dateKey]) acc[dateKey] = [];
 										acc[dateKey].push(event);
@@ -114,7 +140,7 @@ export default function Schedule() {
 							)
 							.map(([dateKey, groupedEvents]) => {
 								const label = getDateGroupLabel(
-									new Date(dateKey)
+									new Date(groupedEvents[0].eventTime)
 								);
 								return (
 									<div
@@ -124,15 +150,25 @@ export default function Schedule() {
 										<h2 className="pl-1 text-sm font-semibold tracking-wider text-slate-400 uppercase dark:text-slate-600">
 											{label}
 										</h2>
-										{groupedEvents.map((event, index) => (
-											<EventCard
-												key={index}
-												eventImg={event.eventImg}
-												eventName={event.eventName}
-												eventTime={event.eventTime}
-												fullWidth={true}
-											/>
-										))}
+										{groupedEvents
+											.sort(
+												(a, b) =>
+													new Date(
+														a.eventTime
+													).getTime() -
+													new Date(
+														b.eventTime
+													).getTime()
+											)
+											.map((event, index) => (
+												<EventCard
+													key={index}
+													eventImg={event.eventImg}
+													eventName={event.eventName}
+													eventTime={event.eventTime}
+													fullWidth={true}
+												/>
+											))}
 									</div>
 								);
 							})}

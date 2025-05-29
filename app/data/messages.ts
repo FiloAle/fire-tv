@@ -1,9 +1,11 @@
 import { friends } from '@/app/data/friends';
+import { Event, events } from '@/app/data/events';
 
 export interface Message {
 	sender: string;
-	text: string;
+	text?: string;
 	timestamp: string;
+	event?: Event;
 }
 
 function slugify(str: string) {
@@ -59,7 +61,7 @@ const groupsChats = groups.map((group) => ({
 	]
 }));
 
-const individualChats = [
+const individualChatsRaw = [
 	{
 		friend: friends[0],
 		messages: [
@@ -70,8 +72,23 @@ const individualChats = [
 			},
 			{
 				sender: 'You',
-				text: 'Sure, tell me everything!',
+				text: "Sure, what's up?",
 				timestamp: '2025-05-22T10:02:00Z'
+			},
+			{
+				sender: friends[0].name,
+				text: 'Would you like to watch Juventus - Monza together? ⚽',
+				timestamp: '2025-05-22T10:00:00Z'
+			},
+			{
+				sender: 'You',
+				text: 'Count me in!',
+				timestamp: '2025-05-22T10:02:00Z'
+			},
+			{
+				sender: friends[0].name,
+				timestamp: '2025-05-22T10:05:00Z',
+				event: friends[0].event
 			}
 		]
 	},
@@ -80,8 +97,23 @@ const individualChats = [
 		messages: [
 			{
 				sender: friends[1].name,
-				text: "Have you watched this afternoon's F1 race?",
+				text: "Will you watch this afternoon's F1 race? 🏎️",
 				timestamp: '2025-05-21T09:30:00Z'
+			}
+		]
+	},
+	{
+		friend: friends[2],
+		messages: [
+			{
+				sender: friends[2].name,
+				text: 'Hey, is there any chance that you and Tommaso are going to cowatch Juventus - Monza today?',
+				timestamp: '2025-05-21T10:30:00Z'
+			},
+			{
+				sender: 'You',
+				text: "Absolutely, we won't miss it. 😉",
+				timestamp: '2025-05-21T10:32:00Z'
 			}
 		]
 	},
@@ -90,12 +122,29 @@ const individualChats = [
 		messages: [
 			{
 				sender: friends[3].name,
-				text: 'Ehilà!',
-				timestamp: '2025-05-21T10:30:00Z'
+				text: "Have you seen yesterday's F1 sprint race results? 🏎️ 🏁",
+				timestamp: '2025-05-21T10:25:00Z'
+			},
+			{
+				sender: friends[3].name,
+				text: "I've just watched the highlights... no words! 😱",
+				timestamp: '2025-05-21T10:27:00Z'
 			}
 		]
 	}
 ];
+
+const individualChats = individualChatsRaw.map(({ friend, messages }) => ({
+	friend,
+	messages: messages.map((msg) =>
+		msg.event
+			? {
+					...msg,
+					text: `${friend.name} sent you an invitation.`
+				}
+			: msg
+	)
+}));
 
 export const chatMessages: Record<
 	string,

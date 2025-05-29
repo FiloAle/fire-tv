@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import EventCard from '@/app/components/event-card';
 import { Toggle } from '@/components/ui/toggle';
+import { pressKey } from '@/app/utils/pressKey';
 
 export default function EventDetailPage() {
 	const { eventName } = useParams();
@@ -26,7 +27,7 @@ export default function EventDetailPage() {
 	);
 
 	return (
-		<div className="flex h-full flex-col gap-y-4 font-sans">
+		<div className="flex h-full flex-col gap-y-4 pb-32 font-sans">
 			<div className="fixed z-30 flex w-screen flex-col items-center justify-end gap-x-8 pb-8">
 				<div className="flex w-full flex-row items-center justify-start p-8 pb-4">
 					<Link
@@ -76,11 +77,15 @@ export default function EventDetailPage() {
 						</p>
 					</div>
 
-					<div className="mt-4 flex h-14 w-full flex-col items-center justify-center overflow-clip rounded-2xl border border-orange-500 bg-gradient-to-b from-[#FF3501] to-[#E11700] shadow-lg dark:shadow-neutral-900/20">
+					<Link
+						onClick={() => pressKey('l')}
+						href="/tvgether"
+						className="mt-4 flex h-14 w-full flex-col items-center justify-center overflow-clip rounded-2xl border border-orange-600 bg-gradient-to-b from-[#FF3501] to-[#E11700] shadow-lg dark:shadow-neutral-900/20"
+					>
 						<p className="w-full text-center text-2xl font-bold text-neutral-100">
 							Co-watch
 						</p>
-					</div>
+					</Link>
 
 					<div className="flex h-14 w-full flex-col items-center justify-center overflow-clip rounded-2xl border border-slate-100 bg-slate-200/70 shadow-lg backdrop-blur-xl dark:border-slate-800 dark:bg-slate-950/75 dark:shadow-neutral-900/20">
 						<p className="w-full text-center text-2xl font-bold text-neutral-100">
@@ -99,7 +104,7 @@ export default function EventDetailPage() {
 					<h1 className="text-xl font-bold">You may also like</h1>
 				</div>
 
-				<div className="no-scrollbar overflow-x-scroll pb-8">
+				<div className="no-scrollbar overflow-x-scroll">
 					<div className="inline-flex gap-x-4 px-8">
 						{stateEvents
 							.filter(

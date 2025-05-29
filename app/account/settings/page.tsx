@@ -28,8 +28,11 @@ export default function Settings() {
 
 						<div className="flex h-full w-full flex-col items-start justify-start gap-4 rounded-xl bg-slate-200 p-4 dark:bg-slate-900">
 							<div className="flex h-full w-full flex-row items-center justify-between">
-								<h2>Scheduled events</h2>
-								<Switch className="me-1 scale-110" />
+								<h2>Saved events reminders</h2>
+								<Switch
+									defaultChecked
+									className="me-1 scale-110"
+								/>
 							</div>
 
 							<div className="w-full border border-b-[0.5px] opacity-5" />
@@ -54,14 +57,20 @@ export default function Settings() {
 						<div className="flex h-full w-full flex-col items-start justify-start gap-4 rounded-xl bg-slate-200 p-4 dark:bg-slate-900">
 							<div className="flex h-full w-full flex-row items-center justify-between">
 								<h2>Show your status</h2>
-								<Switch className="me-1 scale-110" />
+								<Switch
+									defaultChecked
+									className="me-1 scale-110"
+								/>
 							</div>
 
 							<div className="w-full border border-b-[0.5px] opacity-5" />
 
 							<div className="flex h-full w-full flex-row items-center justify-between">
 								<h2>Allow invitations</h2>
-								<Switch className="me-1 scale-110" />
+								<Switch
+									defaultChecked
+									className="me-1 scale-110"
+								/>
 							</div>
 						</div>
 					</div>

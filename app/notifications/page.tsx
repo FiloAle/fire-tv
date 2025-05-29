@@ -42,12 +42,12 @@ export default function Notifications() {
 								}
 								className={`flex w-full items-center gap-4 rounded-xl p-4 shadow-sm ${
 									notification.isInvitation
-										? 'border border-orange-500 bg-gradient-to-b from-[#FF3501] to-[#E11700]'
+										? 'border border-orange-600 bg-gradient-to-b from-[#FF3501] to-[#E11700]'
 										: 'border border-slate-300 bg-slate-50 dark:border-slate-800 dark:bg-slate-900'
 								}`}
 							>
 								<div
-									className={`flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border bg-slate-200 dark:bg-slate-800 ${notification.isInvitation ? 'border-orange-400' : 'border-slate-300 dark:border-slate-700'}`}
+									className={`flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border bg-slate-200 dark:bg-slate-800 ${notification.isInvitation ? 'border-orange-500' : 'border-slate-300 dark:border-slate-700'}`}
 								>
 									{notification.sender === 'System' ? (
 										<span className="material-symbols-rounded text-xl text-slate-800 dark:text-slate-100">

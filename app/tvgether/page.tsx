@@ -14,13 +14,13 @@ export default function TVgether() {
 		.sort(([, a], [, b]) => {
 			const aTime = a.messages.at(-1)?.timestamp ?? '';
 			const bTime = b.messages.at(-1)?.timestamp ?? '';
-			return bTime.localeCompare(aTime); // descending
+			return bTime.localeCompare(aTime);
 		});
 
 	return (
 		<div className="h-svh font-sans">
 			<main className="flex flex-col items-center gap-4">
-				<div className="fixed z-30 flex w-screen flex-col items-center justify-start gap-x-8 pb-8">
+				<div className="fixed z-30 flex w-screen flex-col items-center justify-start gap-x-8">
 					<div className="flex w-screen flex-row items-center justify-end gap-x-8 bg-slate-100 px-8 pt-8 pb-4 dark:bg-slate-950">
 						<div className="ms-1 mt-1 flex h-12 w-full flex-row items-center justify-start gap-x-2 rounded-full bg-slate-200 px-4 dark:bg-slate-800">
 							<span className="material-symbols-rounded !text-2xl opacity-55">
@@ -48,6 +48,14 @@ export default function TVgether() {
 							chatName={chatData.name}
 						/>
 					))}
+				</div>
+
+				<div className="fixed right-8 bottom-32">
+					<div className="flex h-12 w-12 items-center justify-center rounded-full border border-orange-600 bg-gradient-to-b from-[#FF3501] to-[#E11700]">
+						<span className="material-symbols-rounded !text-4xl text-white">
+							add
+						</span>
+					</div>
 				</div>
 			</main>
 		</div>

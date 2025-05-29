@@ -7,7 +7,7 @@ export default function Navbar() {
 	const pathname = usePathname();
 
 	return (
-		<nav className="sticky !bottom-0 left-0 z-40 flex w-full justify-center bg-slate-200/60 pt-2 pb-6 font-sans text-slate-900 backdrop-blur-2xl md:px-4 dark:bg-slate-800/50 dark:text-slate-100">
+		<nav className="fixed !bottom-0 left-0 z-40 flex w-full justify-center bg-slate-200/60 pt-2 pb-6 font-sans text-slate-900 backdrop-blur-2xl md:px-4 dark:bg-slate-800/50 dark:text-slate-100">
 			<div className="flex flex-row gap-x-18 py-2">
 				<Link
 					href="/"

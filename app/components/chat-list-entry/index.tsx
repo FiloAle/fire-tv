@@ -30,7 +30,7 @@ export default function ChatListEntry({
 		>
 			<div className="flex h-full flex-row items-center justify-start gap-4 p-8">
 				{imgSrc !== 'group' ? (
-					<div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-slate-200 dark:border-slate-900">
+					<div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-slate-200 dark:border-slate-900">
 						<Image src={imgSrc} alt="" width={400} height={400} />
 					</div>
 				) : (
@@ -51,8 +51,14 @@ export default function ChatListEntry({
 							{lastMessage.sender}:
 						</p>
 
-						<p className="line-clamp-1 text-slate-500">
-							{lastMessage.text}
+						<p
+							className={`line-clamp-1 ${lastMessage.event ? 'text-orange-500 dark:text-orange-400/75' : 'text-slate-500'}`}
+						>
+							{lastMessage.event
+								? lastMessage.sender != 'You'
+									? `Invited you in ${lastMessage.event.eventName}.`
+									: 'You have sent an invitation'
+								: lastMessage.text}
 						</p>
 					</div>
 				</div>
